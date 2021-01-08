@@ -11,28 +11,40 @@
 
 console.log("script file linked");
 
+////// GRID CREATION //////
 // setting number of rows and columns (programmer input)
 let columnInput = 4;
 let rowInput = 3;
 
+//converting rows and coluns to a string to add to template columns/rows CSS properties
 let columnString = ""
 let rowString = ""
-
 for (i=0; i<columnInput; i++) {
     columnString += "auto ";
 }
-
 for (i=0; i<rowInput; i++) {
     rowString += "auto ";
 }
-
 const columnSetting = columnString.slice(0, columnString.length-1);
 const rowSetting = rowString.slice(0, columnString.length-1);
 
+// setting appropriate number of grid columns and rows in CSS
+// also changing other grid properties in CSS
 const grid = document.querySelector(".grid");
 grid.style.backgroundColor = "gray";
 grid.style.gridTemplateColumns = columnSetting; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-template-columns
 grid.style.gridTemplateRows = rowSetting;
+grid.style.gridGap = "10px 10px"; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-gap
+
+
+// create "cards"
+let numberOfCards = columnInput * rowInput;
+for (i=0; i<numberOfCards; i++) {
+    let card = document.createElement("div");
+    card.classList.add("card");
+    card.setAttribute("id", `Card${i+1}`);
+    grid.appendChild(card);
+}
 
 
 // grid.setAttribute("grid-template-columns", "auto")
