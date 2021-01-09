@@ -49,7 +49,13 @@ function assignCards(i) {
     document.querySelector(`#Card${i+1}`).innerHTML = dataArray[i];
 }
 
-
+// add event listener to cards
+for (let i = 0; i < numberOfCards; i++) {
+    const oneCard = document.querySelector(`#Card${i+1}`);
+    oneCard.addEventListener("click", function(){
+        oneCard.style.background = "red";
+    })
+}
 
 
 // cardPopulation();
