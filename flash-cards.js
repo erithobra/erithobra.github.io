@@ -37,10 +37,14 @@ grid.style.gridGap = "10px 10px"; // https://www.w3schools.com/cssref/tryit.asp?
 // create "cards"
 let numberOfCards = columnInput * rowInput;
 for (let i=0; i<numberOfCards; i++) {
-    let card = document.createElement("div");
+    let gridLocation = document.createElement("div");
+    let card = document.createElement("a");
+    gridLocation.classList.add("gridLocation");
     card.classList.add("card");
+    gridLocation.setAttribute("id", `gridLocation${i+1}`);
     card.setAttribute("id", `Card${i+1}`);
-    grid.appendChild(card);
+    grid.appendChild(gridLocation);
+    gridLocation.appendChild(card);
     assignCards(i);
 }
 
@@ -51,7 +55,7 @@ function assignCards(i) {
 
 // add event listener to cards
 for (let i = 0; i < numberOfCards; i++) {
-    const oneCard = document.querySelector(`#Card${i+1}`);
+    const oneCard = document.querySelector(`#gridLocation${i+1}`);
     oneCard.addEventListener("click", function(){
         oneCard.style.background = "red";
     })
