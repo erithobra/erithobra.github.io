@@ -17,12 +17,32 @@ body {
     display: grid;
     height: 200px;
     width: 150px;
-    background-color: blue;
     align-content: center;
     justify-content: center;
+    background-color: blue;
 }
 
 .card {
     height: min-content;
     width: min-content;
+    background-color: blue;
 }
+
+.flippedCard {
+    display: grid;
+    height: 200px;
+    width: 150px;
+    align-content: center;
+    justify-content: center;
+    background-color: red;
+}
+
+.matchedCards {
+    display: grid;
+    height: 200px;
+    width: 150px;
+    align-content: center;
+    justify-content: center;
+    background-color: black;
+}
+
