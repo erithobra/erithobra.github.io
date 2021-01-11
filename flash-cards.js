@@ -31,7 +31,6 @@ const rowSetting = rowString.slice(0, columnString.length-1);
 // setting appropriate number of grid columns and rows in CSS
 // also changing other grid properties in CSS
 const grid = document.querySelector(".grid");
-// grid.style.backgroundColor = "gray";
 grid.style.gridTemplateColumns = columnSetting; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-template-columns
 grid.style.gridTemplateRows = rowSetting;
 grid.style.gridGap = "10px 10px"; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-gap
@@ -43,7 +42,6 @@ for (let i=0; i<numberOfCards; i++) {
     let gridLocation = document.createElement("div");
     let card = document.createElement("img");
     let cardBack = document.createElement("img");
-    // gridLocation.classList.add("gridLocation");
     card.classList.add("card");
     cardBack.classList.add("gridLocation");
     gridLocation.setAttribute("id", `gridLocation${i+1}`);
@@ -105,11 +103,9 @@ for (let i = 0; i < numberOfCards; i++) {
             // waits for click anywhere on the page before running flipCheck            
             if (flipCount == 2) {
                 let holdClick = 0;
-                //console.log("flipcheck");
                 document.body.addEventListener("click", function(e) {
                     holdClick++;
                     if (holdClick == 2){
-                        //console.log(holdClick);
                         flipCheck();
                     }
                 })
@@ -126,30 +122,23 @@ let cardCompare = [];
 function flipCheck () {
     if (flipCount == 2) {
         flipCount = 0;
-        //console.log("reset cards");
         // populates selected cards to cardCompare by seeing which cards have the flippedCard class
         for (let i = 0; i < numberOfCards; i++) {
             const oneCard3 = document.querySelector(`#cardBack${i+1}`);
             if (oneCard3.classList.value == "invisibleGridLocation" && cardCompare[0] == null) {
                 cardCompare.push(i);
-                //console.log(cardCompare);                 
             } else if (oneCard3.classList.value == "invisibleGridLocation" && cardCompare[0] >= 0) {
                 cardCompare.push(i);
-                //console.log(cardCompare);
             }
         }
         // if cards match, class will changed to matchedCards, else the cards will be returned to gridLocation class (flipped back over)
         if (document.querySelector(`#card${cardCompare[0]+1}`).getAttribute("src") == document.querySelector(`#card${cardCompare[1]+1}`).getAttribute("src")) {
-            //console.log(document.querySelector(`#card${cardCompare[0]+1}`).innerHTML);
-            //console.log(document.querySelector(`#card${cardCompare[1]+1}`).innerHTML);
-            //console.log("match");
             document.querySelector(`#cardBack${cardCompare[0]+1}`).classList.replace("invisibleGridLocation", "matchedCardBack");
             document.querySelector(`#cardBack${cardCompare[1]+1}`).classList.replace("invisibleGridLocation", "matchedCardBack");
             document.querySelector(`#card${cardCompare[0]+1}`).classList.replace("visibleCard", "invisibleCard");
             document.querySelector(`#card${cardCompare[1]+1}`).classList.replace("visibleCard", "invisibleCard");
             cardCompare = [];
             matchMessage();
-            
 
         } else {
             document.querySelector(`#cardBack${cardCompare[0]+1}`).classList.replace("invisibleGridLocation", "gridLocation");
@@ -179,12 +168,9 @@ const matchMessage = function () {
     for (let i = 0; i < numberOfCards; i++) {
         if (document.querySelector(`#card${i+1}`).classList.value == "invisibleCard") {
             totalMatchedCards++;
-            //console.log(totalMatchedCards);
             document.querySelector("#matchCounter").innerHTML = `Matches found: ${totalMatchedCards/2} out of ${numberOfCards/2}`
             document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
             if (totalMatchedCards == numberOfCards) {
-                //console.log("game over, man!");
-                // sleep(500);
                 document.querySelector("h1").innerHTML = "YOU WIN!";
                 document.querySelector("h2").innerHTML = "(hit \"reset\" to play again)";
             }
@@ -199,10 +185,6 @@ const noMatchMessage = function () {
     document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
 }
 
-// const clearMessage = function() {
-//     sleep(2000);
-//     document.querySelector("h1").innerHTML = "Top again.";
-// }
 // PSEUDOCODE - BRONZE
 // create a 4 x 3 grid
 // populate each grid location with string data
