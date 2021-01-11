@@ -2,7 +2,7 @@ console.log("script file linked");
 
 ////// DATA FOR CARDS //////
 // have an array of data (1/2 the number of cards)
-let dataArray = ["red", "yellow", "green", "blue", "purple", "black"];
+let dataArray = ["images/ace_of_clubs.svg", "images/ace_of_spades.svg", "images/ace_of_diamonds.svg", "images/ace_of_hearts.svg", "images/king_of_clubs.svg", "images/king_of_spades.svg"];
 
 // duplicate the data so that there are as many data points as cards
 // there will be 1/2 as many unique values, meaning every card will have a matching data point
@@ -41,7 +41,7 @@ grid.style.gridGap = "10px 10px"; // https://www.w3schools.com/cssref/tryit.asp?
 let numberOfCards = columnInput * rowInput;
 for (let i=0; i<numberOfCards; i++) {
     let gridLocation = document.createElement("div");
-    let card = document.createElement("a");
+    let card = document.createElement("img");
     let cardBack = document.createElement("img");
     // gridLocation.classList.add("gridLocation");
     card.classList.add("card");
@@ -58,7 +58,7 @@ for (let i=0; i<numberOfCards; i++) {
 
 // assign the data to the "card" divs
 function assignCards(i) {
-    document.querySelector(`#card${i+1}`).innerHTML = dataArray[i];
+    document.querySelector(`#card${i+1}`).setAttribute("src", `${dataArray[i]}`);
 }
 
 // add event listener to cards
@@ -73,20 +73,23 @@ for (let i = 0; i < numberOfCards; i++) {
     })
     // reset function
     const reset = function() {
-        console.log("reset clicked");
+        //console.log("reset clicked");
         for (let i = 0; i < numberOfCards; i++) {
             // document.querySelector(`#gridLocation${i+1}`).classList.remove("flippedCard", "matchedCards")
-            document.querySelector(`#card${i+1}`).classList.remove("visibleCard", "invisibleCard")
-            document.querySelector(`#cardBack${i+1}`).classList.remove("matchedCardBack", "gridLocation");
+            document.querySelector(`#card${i+1}`).classList.remove("visibleCard", "invisibleCard", "card")
+            document.querySelector(`#cardBack${i+1}`).classList.remove("matchedCardBack", "gridLocation", "invisibleGridLocation");
             // document.querySelector(`#gridLocation${i+1}`).classList.add("gridLocation");
             document.querySelector(`#card${i+1}`).classList.add("card");
             document.querySelector(`#cardBack${i+1}`).classList.add("gridLocation");
             totalMatchedCards = 0;
-            turnCount = 0
+            turnCount = 0;
+            holdClick =0;
+            flipCount = 0;
             document.querySelector("#matchCounter").innerHTML = "";
             document.querySelector("#turnCounter").innerHTML = "";
             document.querySelector("#gameGreeting").innerHTML = "Click cards. Find matches. Profit.";
-            console.log(i);
+            document.querySelector("h2").innerHTML = "";
+            //console.log(i);
         }
     }
 
@@ -104,11 +107,11 @@ for (let i = 0; i < numberOfCards; i++) {
             // waits for click anywhere on the page before running flipCheck            
             if (flipCount == 2) {
                 let holdClick = 0;
-                console.log("flipcheck");
+                //console.log("flipcheck");
                 document.body.addEventListener("click", function(e) {
                     holdClick++;
                     if (holdClick == 2){
-                        console.log(holdClick);
+                        //console.log(holdClick);
                         flipCheck();
                     }
                 })
@@ -125,23 +128,23 @@ let cardCompare = [];
 function flipCheck () {
     if (flipCount == 2) {
         flipCount = 0;
-        console.log("reset cards");
+        //console.log("reset cards");
         // populates selected cards to cardCompare by seeing which cards have the flippedCard class
         for (let i = 0; i < numberOfCards; i++) {
             const oneCard3 = document.querySelector(`#cardBack${i+1}`);
             if (oneCard3.classList.value == "invisibleGridLocation" && cardCompare[0] == null) {
                 cardCompare.push(i);
-                console.log(cardCompare);                 
+                //console.log(cardCompare);                 
             } else if (oneCard3.classList.value == "invisibleGridLocation" && cardCompare[0] >= 0) {
                 cardCompare.push(i);
-                console.log(cardCompare);
+                //console.log(cardCompare);
             }
         }
         // if cards match, class will changed to matchedCards, else the cards will be returned to gridLocation class (flipped back over)
-        if (document.querySelector(`#card${cardCompare[0]+1}`).innerHTML == document.querySelector(`#card${cardCompare[1]+1}`).innerHTML) {
-            console.log(document.querySelector(`#card${cardCompare[0]+1}`).innerHTML);
-            console.log(document.querySelector(`#card${cardCompare[1]+1}`).innerHTML);
-            console.log("match");
+        if (document.querySelector(`#card${cardCompare[0]+1}`).getAttribute("src") == document.querySelector(`#card${cardCompare[1]+1}`).getAttribute("src")) {
+            //console.log(document.querySelector(`#card${cardCompare[0]+1}`).innerHTML);
+            //console.log(document.querySelector(`#card${cardCompare[1]+1}`).innerHTML);
+            //console.log("match");
             document.querySelector(`#cardBack${cardCompare[0]+1}`).classList.replace("invisibleGridLocation", "matchedCardBack");
             document.querySelector(`#cardBack${cardCompare[1]+1}`).classList.replace("invisibleGridLocation", "matchedCardBack");
             document.querySelector(`#card${cardCompare[0]+1}`).classList.replace("visibleCard", "invisibleCard");
@@ -178,11 +181,11 @@ const matchMessage = function () {
     for (let i = 0; i < numberOfCards; i++) {
         if (document.querySelector(`#card${i+1}`).classList.value == "invisibleCard") {
             totalMatchedCards++;
-            console.log(totalMatchedCards);
+            //console.log(totalMatchedCards);
             document.querySelector("#matchCounter").innerHTML = `Matches found: ${totalMatchedCards/2} out of ${numberOfCards/2}`
             document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
             if (totalMatchedCards == numberOfCards) {
-                console.log("game over, man!");
+                //console.log("game over, man!");
                 // sleep(500);
                 document.querySelector("h1").innerHTML = "YOU WIN!";
                 document.querySelector("h2").innerHTML = "(hit \"reset\" to play again)";

@@ -28,19 +28,20 @@ body {
 }
 
 .card {
+    display: none;
     border-radius: 20px;
-    height: min-content;
-    width: min-content;
+    height: 200px;
+    width: 150px;
     visibility: hidden;
     background-color: blue;
 }
 
 .visibleCard {
     border-radius: 20px;
-    height: min-content;
-    width: min-content;
+    height: 200px;
+    width: 150px;
     visibility: visible;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .flippedCard {
