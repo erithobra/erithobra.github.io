@@ -1,5 +1,7 @@
 body {
-
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
 }
 
 .grid {
@@ -25,7 +27,15 @@ body {
 .card {
     height: min-content;
     width: min-content;
+    visibility: hidden;
     background-color: blue;
+}
+
+.visibleCard {
+    height: min-content;
+    width: min-content;
+    visibility: visible;
+    background-color: red;
 }
 
 .flippedCard {
@@ -46,3 +56,12 @@ body {
     background-color: black;
 }
 
+.reset {
+    width: max-content;
+    justify-self: center;
+}
+
+h1 {
+    width: max-content;
+    justify-self: center;
+}
