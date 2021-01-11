@@ -8,6 +8,8 @@ let dataArray = ["red", "yellow", "green", "blue", "purple", "black"];
 // there will be 1/2 as many unique values, meaning every card will have a matching data point
 dataArray = dataArray.concat(dataArray);
 
+// randomize the dataArray -- https://flaviocopes.com/how-to-shuffle-array-javascript/
+dataArray = dataArray.sort(() => Math.random() - 0.5);
 
 ////// BOARD CREATION //////
 // setting number of rows and columns (programmer input)
@@ -76,6 +78,7 @@ for (let i = 0; i < numberOfCards; i++) {
             turnCount = 0
             document.querySelector("#matchCounter").innerHTML = "";
             document.querySelector("#turnCounter").innerHTML = "";
+            document.querySelector("#gameGreeting").innterHTML = "Click cards. Find matches. Profit.";
             console.log(i);
         }
     }

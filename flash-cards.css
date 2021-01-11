@@ -5,8 +5,10 @@ body {
 }
 
 .grid {
+    border-radius: 20px;
     width: 720px;
     margin: 20px auto;
+    padding: 15px;
     height: 720px;
     display: grid;
     grid-template-rows: auto auto auto;
@@ -16,6 +18,7 @@ body {
 }
 
 .gridLocation {
+    border-radius: 20px;
     display: grid;
     height: 200px;
     width: 150px;
@@ -25,6 +28,7 @@ body {
 }
 
 .card {
+    border-radius: 20px;
     height: min-content;
     width: min-content;
     visibility: hidden;
@@ -32,6 +36,7 @@ body {
 }
 
 .visibleCard {
+    border-radius: 20px;
     height: min-content;
     width: min-content;
     visibility: visible;
@@ -39,6 +44,7 @@ body {
 }
 
 .flippedCard {
+    border-radius: 20px;
     display: grid;
     height: 200px;
     width: 150px;
@@ -48,6 +54,7 @@ body {
 }
 
 .matchedCards {
+    border-radius: 20px;
     display: grid;
     height: 200px;
     width: 150px;
