@@ -9,7 +9,7 @@ let dataArray = ["red", "yellow", "green", "blue", "purple", "black"];
 dataArray = dataArray.concat(dataArray);
 
 // randomize the dataArray -- https://flaviocopes.com/how-to-shuffle-array-javascript/
-dataArray = dataArray.sort(() => Math.random() - 0.5);
+//dataArray = dataArray.sort(() => Math.random() - 0.5);
 
 ////// BOARD CREATION //////
 // setting number of rows and columns (programmer input)
@@ -31,7 +31,7 @@ const rowSetting = rowString.slice(0, columnString.length-1);
 // setting appropriate number of grid columns and rows in CSS
 // also changing other grid properties in CSS
 const grid = document.querySelector(".grid");
-grid.style.backgroundColor = "gray";
+// grid.style.backgroundColor = "gray";
 grid.style.gridTemplateColumns = columnSetting; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-template-columns
 grid.style.gridTemplateRows = rowSetting;
 grid.style.gridGap = "10px 10px"; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-gap
@@ -40,14 +40,19 @@ grid.style.gridGap = "10px 10px"; // https://www.w3schools.com/cssref/tryit.asp?
 // create "cards"
 let numberOfCards = columnInput * rowInput;
 for (let i=0; i<numberOfCards; i++) {
-    let gridLocation = document.createElement("div"); 
-    let card = document.createElement("a"); 
-    gridLocation.classList.add("gridLocation");
+    let gridLocation = document.createElement("div");
+    let card = document.createElement("a");
+    let cardBack = document.createElement("img");
+    // gridLocation.classList.add("gridLocation");
     card.classList.add("card");
+    cardBack.classList.add("gridLocation");
     gridLocation.setAttribute("id", `gridLocation${i+1}`);
     card.setAttribute("id", `card${i+1}`);
+    cardBack.setAttribute("src", "images/card-back2.png");
+    cardBack.setAttribute("id", `cardBack${i+1}`)
     grid.appendChild(gridLocation); // creates grid locations (or "slots") within the grid
     gridLocation.appendChild(card); // creates cards that go into grid locations
+    gridLocation.appendChild(cardBack);
     assignCards(i);
 }
 
@@ -70,26 +75,31 @@ for (let i = 0; i < numberOfCards; i++) {
     const reset = function() {
         console.log("reset clicked");
         for (let i = 0; i < numberOfCards; i++) {
-            document.querySelector(`#gridLocation${i+1}`).classList.remove("flippedCard", "matchedCards")
-            document.querySelector(`#card${i+1}`).classList.remove("visibleCard", "matchedCards")
-            document.querySelector(`#gridLocation${i+1}`).classList.add("gridLocation");
+            // document.querySelector(`#gridLocation${i+1}`).classList.remove("flippedCard", "matchedCards")
+            document.querySelector(`#card${i+1}`).classList.remove("visibleCard", "invisibleCard")
+            document.querySelector(`#cardBack${i+1}`).classList.remove("matchedCardBack", "gridLocation");
+            // document.querySelector(`#gridLocation${i+1}`).classList.add("gridLocation");
             document.querySelector(`#card${i+1}`).classList.add("card");
+            document.querySelector(`#cardBack${i+1}`).classList.add("gridLocation");
             totalMatchedCards = 0;
             turnCount = 0
             document.querySelector("#matchCounter").innerHTML = "";
             document.querySelector("#turnCounter").innerHTML = "";
-            document.querySelector("#gameGreeting").innterHTML = "Click cards. Find matches. Profit.";
+            document.querySelector("#gameGreeting").innerHTML = "Click cards. Find matches. Profit.";
             console.log(i);
         }
     }
 
     const oneCard = document.querySelector(`#gridLocation${i+1}`);
     const oneCard2 = document.querySelector(`#card${i+1}`);
+    const oneCard3 = document.querySelector(`#cardBack${i+1}`)
+
     oneCard.addEventListener("click", function(){
         // updates the flipCount only if the card has not already been flipped
-        if (oneCard.classList.value == "gridLocation" && flipCount < 2) {
+        if (oneCard3.classList.value == "gridLocation" && flipCount < 2) {
             oneCard.classList.replace("gridLocation", "flippedCard");
             oneCard2.classList.replace("card", "visibleCard");
+            oneCard3.classList.replace("gridLocation", "invisibleGridLocation")
             flipCount++;
             // waits for click anywhere on the page before running flipCheck            
             if (flipCount == 2) {
@@ -118,11 +128,11 @@ function flipCheck () {
         console.log("reset cards");
         // populates selected cards to cardCompare by seeing which cards have the flippedCard class
         for (let i = 0; i < numberOfCards; i++) {
-            const oneCard = document.querySelector(`#gridLocation${i+1}`);
-            if (oneCard.classList.value == "flippedCard" && cardCompare[0] == null) {
+            const oneCard3 = document.querySelector(`#cardBack${i+1}`);
+            if (oneCard3.classList.value == "invisibleGridLocation" && cardCompare[0] == null) {
                 cardCompare.push(i);
                 console.log(cardCompare);                 
-            } else if (oneCard.classList.value == "flippedCard" && cardCompare[0] >= 0) {
+            } else if (oneCard3.classList.value == "invisibleGridLocation" && cardCompare[0] >= 0) {
                 cardCompare.push(i);
                 console.log(cardCompare);
             }
@@ -132,17 +142,17 @@ function flipCheck () {
             console.log(document.querySelector(`#card${cardCompare[0]+1}`).innerHTML);
             console.log(document.querySelector(`#card${cardCompare[1]+1}`).innerHTML);
             console.log("match");
-            document.querySelector(`#gridLocation${cardCompare[0]+1}`).classList.replace("flippedCard", "matchedCards");
-            document.querySelector(`#gridLocation${cardCompare[1]+1}`).classList.replace("flippedCard", "matchedCards");
-            document.querySelector(`#card${cardCompare[0]+1}`).classList.replace("visibleCard", "matchedCards");
-            document.querySelector(`#card${cardCompare[1]+1}`).classList.replace("visibleCard", "matchedCards");
+            document.querySelector(`#cardBack${cardCompare[0]+1}`).classList.replace("invisibleGridLocation", "matchedCardBack");
+            document.querySelector(`#cardBack${cardCompare[1]+1}`).classList.replace("invisibleGridLocation", "matchedCardBack");
+            document.querySelector(`#card${cardCompare[0]+1}`).classList.replace("visibleCard", "invisibleCard");
+            document.querySelector(`#card${cardCompare[1]+1}`).classList.replace("visibleCard", "invisibleCard");
             cardCompare = [];
             matchMessage();
             
 
         } else {
-            document.querySelector(`#gridLocation${cardCompare[0]+1}`).classList.replace("flippedCard", "gridLocation");
-            document.querySelector(`#gridLocation${cardCompare[1]+1}`).classList.replace("flippedCard", "gridLocation");
+            document.querySelector(`#cardBack${cardCompare[0]+1}`).classList.replace("invisibleGridLocation", "gridLocation");
+            document.querySelector(`#cardBack${cardCompare[1]+1}`).classList.replace("invisibleGridLocation", "gridLocation");
             document.querySelector(`#card${cardCompare[0]+1}`).classList.replace("visibleCard", "card");
             document.querySelector(`#card${cardCompare[1]+1}`).classList.replace("visibleCard", "card");        
             cardCompare = [];
@@ -166,7 +176,7 @@ const matchMessage = function () {
     turnCount++;
     document.querySelector("h1").innerHTML = "You got a match!! Keep going!";
     for (let i = 0; i < numberOfCards; i++) {
-        if (document.querySelector(`#card${i+1}`).classList.value == "matchedCards") {
+        if (document.querySelector(`#card${i+1}`).classList.value == "invisibleCard") {
             totalMatchedCards++;
             console.log(totalMatchedCards);
             document.querySelector("#matchCounter").innerHTML = `Matches found: ${totalMatchedCards/2} out of ${numberOfCards/2}`
@@ -188,10 +198,10 @@ const noMatchMessage = function () {
     document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
 }
 
-const clearMessage = function() {
-    sleep(2000);
-    document.querySelector("h1").innerHTML = "Top again.";
-}
+// const clearMessage = function() {
+//     sleep(2000);
+//     document.querySelector("h1").innerHTML = "Top again.";
+// }
 // PSEUDOCODE - BRONZE
 // create a 4 x 3 grid
 // populate each grid location with string data
