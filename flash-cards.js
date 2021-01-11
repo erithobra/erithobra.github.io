@@ -60,10 +60,20 @@ let flipCount = 0;
 for (let i = 0; i < numberOfCards; i++) {
     const oneCard = document.querySelector(`#gridLocation${i+1}`);
     oneCard.addEventListener("click", function(){
-        if (oneCard.classList.value == "gridLocation") {
+        if (oneCard.classList.value == "gridLocation" && flipCount < 2) {
             oneCard.classList.replace("gridLocation", "flippedCard");
             flipCount++;
-            flipCheck()
+            if (flipCount == 2) {
+                let holdClick = 0;
+                console.log("flipcheck");
+                document.body.addEventListener("click", function(e) {
+                    holdClick++;
+                    if (holdClick == 2){
+                        console.log(holdClick);
+                        flipCheck();
+                    }
+                })
+            }
         }
     })
 }
@@ -74,31 +84,33 @@ let cardCompare = [];
 function flipCheck () {
     if (flipCount == 2) {
         flipCount = 0;
-        console.log("reset cards");
-        for (let i = 0; i < numberOfCards; i++) {
-            const oneCard = document.querySelector(`#gridLocation${i+1}`);
-            
-            let cardTwo = NaN;
-            if (oneCard.classList.value == "flippedCard" && cardCompare[0] == null) {
-                cardCompare.push(i);
-                console.log(cardCompare);                 
-            } else if (oneCard.classList.value == "flippedCard" && cardCompare[0] >= 0) {
-                cardCompare.push(i);
-                console.log(cardCompare);
+        // document.body.addEventListener("click", function(e) {
+            console.log("reset cards");
+            for (let i = 0; i < numberOfCards; i++) {
+                const oneCard = document.querySelector(`#gridLocation${i+1}`);
+                
+                let cardTwo = NaN;
+                if (oneCard.classList.value == "flippedCard" && cardCompare[0] == null) {
+                    cardCompare.push(i);
+                    console.log(cardCompare);                 
+                } else if (oneCard.classList.value == "flippedCard" && cardCompare[0] >= 0) {
+                    cardCompare.push(i);
+                    console.log(cardCompare);
+                }
             }
-        }
-        if (document.querySelector(`#card${cardCompare[0]+1}`).innerHTML == document.querySelector(`#card${cardCompare[1]+1}`).innerHTML) {
-            console.log(document.querySelector(`#card${cardCompare[0]+1}`).innerHTML);
-            console.log(document.querySelector(`#card${cardCompare[1]+1}`).innerHTML);
-            console.log("match");
-            document.querySelector(`#gridLocation${cardCompare[0]+1}`).classList.replace("flippedCard", "matchedCards");
-            document.querySelector(`#gridLocation${cardCompare[1]+1}`).classList.replace("flippedCard", "matchedCards");
-            cardCompare = [];
-        } else {
-            document.querySelector(`#gridLocation${cardCompare[0]+1}`).classList.replace("flippedCard", "gridLocation");
-            document.querySelector(`#gridLocation${cardCompare[1]+1}`).classList.replace("flippedCard", "gridLocation");    
-            cardCompare = [];
-        }
+            if (document.querySelector(`#card${cardCompare[0]+1}`).innerHTML == document.querySelector(`#card${cardCompare[1]+1}`).innerHTML) {
+                console.log(document.querySelector(`#card${cardCompare[0]+1}`).innerHTML);
+                console.log(document.querySelector(`#card${cardCompare[1]+1}`).innerHTML);
+                console.log("match");
+                document.querySelector(`#gridLocation${cardCompare[0]+1}`).classList.replace("flippedCard", "matchedCards");
+                document.querySelector(`#gridLocation${cardCompare[1]+1}`).classList.replace("flippedCard", "matchedCards");
+                cardCompare = [];
+            } else {
+                document.querySelector(`#gridLocation${cardCompare[0]+1}`).classList.replace("flippedCard", "gridLocation");
+                document.querySelector(`#gridLocation${cardCompare[1]+1}`).classList.replace("flippedCard", "gridLocation");    
+                cardCompare = [];
+            }
+        // })
     }
 }
 
