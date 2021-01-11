@@ -64,7 +64,7 @@ for (let i = 0; i < numberOfCards; i++) {
     resetButton.addEventListener("click", function (e) {
     reset();
     })
-
+    // reset function
     const reset = function() {
         console.log("reset clicked");
         for (let i = 0; i < numberOfCards; i++) {
@@ -72,6 +72,10 @@ for (let i = 0; i < numberOfCards; i++) {
             document.querySelector(`#card${i+1}`).classList.remove("visibleCard", "matchedCards")
             document.querySelector(`#gridLocation${i+1}`).classList.add("gridLocation");
             document.querySelector(`#card${i+1}`).classList.add("card");
+            totalMatchedCards = 0;
+            turnCount = 0
+            document.querySelector("#matchCounter").innerHTML = "";
+            document.querySelector("#turnCounter").innerHTML = "";
             console.log(i);
         }
     }
@@ -153,13 +157,17 @@ function sleep(milliseconds) {
 }
 
 let totalMatchedCards = 0;
+let turnCount = 0;
 ///// why is the timer inconsistent? /////
 const matchMessage = function () {
+    turnCount++;
     document.querySelector("h1").innerHTML = "You got a match!! Keep going!";
     for (let i = 0; i < numberOfCards; i++) {
         if (document.querySelector(`#card${i+1}`).classList.value == "matchedCards") {
             totalMatchedCards++;
             console.log(totalMatchedCards);
+            document.querySelector("#matchCounter").innerHTML = `Matches found: ${totalMatchedCards/2} out of ${numberOfCards/2}`
+            document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
             if (totalMatchedCards == numberOfCards) {
                 console.log("game over, man!");
                 // sleep(500);
@@ -173,6 +181,8 @@ const matchMessage = function () {
 
 const noMatchMessage = function () {
     document.querySelector("h1").innerHTML = "No match. Try Again.";
+    turnCount++;
+    document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
 }
 
 const clearMessage = function() {

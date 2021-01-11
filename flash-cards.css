@@ -64,4 +64,17 @@ body {
 h1 {
     width: max-content;
     justify-self: center;
+    margin: 25px 0px 5px 0px;
+}
+
+h2 {
+    width: max-content;
+    justify-self: center;
+    margin: 5px 0px 5px 0px;
+}
+
+h3 {
+    width: max-content;
+    justify-self: center;
+    margin: 5px 0px 5px 0px;
 }
