@@ -9,7 +9,7 @@ let dataArray = ["images/ace_of_clubs.svg", "images/ace_of_spades.svg", "images/
 dataArray = dataArray.concat(dataArray);
 
 // randomize the dataArray -- https://flaviocopes.com/how-to-shuffle-array-javascript/
-//dataArray = dataArray.sort(() => Math.random() - 0.5);
+dataArray = dataArray.sort(() => Math.random() - 0.5);
 
 ////// BOARD CREATION //////
 // setting number of rows and columns (programmer input)
@@ -73,23 +73,21 @@ for (let i = 0; i < numberOfCards; i++) {
     })
     // reset function
     const reset = function() {
-        //console.log("reset clicked");
+        totalMatchedCards = 0;
+        turnCount = 0;
+        holdClick =0;
+        flipCount = 0;
+        document.querySelector("#matchCounter").innerHTML = "";
+        document.querySelector("#turnCounter").innerHTML = "";
+        document.querySelector("#gameGreeting").innerHTML = "Click cards. Find matches. Profit.";
+        document.querySelector("h2").innerHTML = "";
+        dataArray = dataArray.sort(() => Math.random() - 0.5);
         for (let i = 0; i < numberOfCards; i++) {
-            // document.querySelector(`#gridLocation${i+1}`).classList.remove("flippedCard", "matchedCards")
             document.querySelector(`#card${i+1}`).classList.remove("visibleCard", "invisibleCard", "card")
             document.querySelector(`#cardBack${i+1}`).classList.remove("matchedCardBack", "gridLocation", "invisibleGridLocation");
-            // document.querySelector(`#gridLocation${i+1}`).classList.add("gridLocation");
             document.querySelector(`#card${i+1}`).classList.add("card");
             document.querySelector(`#cardBack${i+1}`).classList.add("gridLocation");
-            totalMatchedCards = 0;
-            turnCount = 0;
-            holdClick =0;
-            flipCount = 0;
-            document.querySelector("#matchCounter").innerHTML = "";
-            document.querySelector("#turnCounter").innerHTML = "";
-            document.querySelector("#gameGreeting").innerHTML = "Click cards. Find matches. Profit.";
-            document.querySelector("h2").innerHTML = "";
-            //console.log(i);
+            assignCards(i);
         }
     }
 
