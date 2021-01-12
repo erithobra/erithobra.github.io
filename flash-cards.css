@@ -20,11 +20,16 @@ body {
 .gridLocation {
     border-radius: 20px;
     display: grid;
-    height: 200px;
-    width: 150px;
+    height: 100%;
+    width: 100%;
     align-content: center;
     justify-content: center;
     background-color: blue;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /* transform: rotate(180deg); */
 }
 
 .card {
@@ -41,7 +46,6 @@ body {
     height: 200px;
     width: 150px;
     visibility: visible;
-    /* background-color: red; */
 }
 
 .flippedCard {
@@ -97,4 +101,11 @@ h3 {
 
 .matchedCardBack {
     display: none;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 150px;
+    height: 200px;
+    perspective: 1000px;
 }

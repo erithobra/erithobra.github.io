@@ -42,6 +42,7 @@ for (let i=0; i<numberOfCards; i++) {
     let gridLocation = document.createElement("div");
     let card = document.createElement("img");
     let cardBack = document.createElement("img");
+    gridLocation.classList.add("flip-card");
     card.classList.add("card");
     cardBack.classList.add("gridLocation");
     gridLocation.setAttribute("id", `gridLocation${i+1}`);
