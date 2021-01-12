@@ -1,19 +1,39 @@
+// async function runGame() {
 console.log("script file 2 linked");
 
 // Create image array that will be used for cards
+
+// Board settings
+// manual input of settings at this time
+let columnInput = 4;
+let rowInput = 3;
+
+    ////// RANDOM IMAGE ARRAY USING API'S... HOLD FOR LATER //////
+            // let cardCount = (columnInput * rowInput)/2;
+            // async function getRandomCards() {
+            //     let imageArray = [];
+            //     for (let i = 0; i < cardCount; i ++) {
+            //     let randomCard = await axios ({
+            //         url: "https://api.unsplash.com/photos/random?client_id=FiM-3N-x_Cn3j0aKrFVPHDyUi8zSsYWw-IJRj5rftiM",
+            //         method: "get"
+            //     })
+            //     imageArray.push(randomCard.data.urls.small);
+            //     }
+            // return imageArray;
+            // }
+            // const imageArray = await getRandomCards();
+            // console.log(imageArray);
+            //let dataArray = imageArray.concat(imageArray);
 
     // creating initial image array for cards
     let dataArray = ["images/ace_of_clubs.svg", "images/ace_of_spades.svg", "images/ace_of_diamonds.svg", "images/ace_of_hearts.svg", "images/king_of_clubs.svg", "images/king_of_spades.svg"];
     // doubling array length and creating duplicate values so every image has a matching image
     dataArray = dataArray.concat(dataArray);
     // randomizing the image order -- https://flaviocopes.com/how-to-shuffle-array-javascript/
-    //dataArray = dataArray.sort(() => Math.random() - 0.5);
+    dataArray = dataArray.sort(() => Math.random() - 0.5);
 
 
-// Board settings
-// manual input of settings at this time
-let columnInput = 4;
-let rowInput = 3;
+
 
 // convert rows and columns to strings so that that they can be added to CSS properties
 let columnString = "";
@@ -88,9 +108,9 @@ for (let i=1; i <= numberOfCards; i++) {
         flipCount = 0;
         document.querySelector("#matchCounter").innerHTML = "";
         document.querySelector("#turnCounter").innerHTML = "";
-        document.querySelector("#gameGreeting").innerHTML = "Click cards. Find matches. Profit.";
+        document.querySelector("#gameGreeting").innerHTML = "Click a card, find its match.";
         document.querySelector("h2").innerHTML = "";
-        //dataArray = dataArray.sort(() => Math.random() - 0.5);
+        dataArray = dataArray.sort(() => Math.random() - 0.5);
         for (let i = 1; i <= numberOfCards; i++) {
             let cardFront = document.querySelector(`#flipCardFront${i}`);
             let cardInner = document.querySelector(`#flipCardInner${i}`);
@@ -195,3 +215,5 @@ const noMatchMessage = function () {
     turnCount++;
     document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
 }
+// }
+// runGame();
