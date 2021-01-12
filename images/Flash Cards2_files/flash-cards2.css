@@ -1,30 +1,3 @@
-body {
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    font-family: sans-serif;
-}
-
-h1 {
-    margin: 2px;
-}
-
-h2 {
-    margin: 2px;
-}
-
-h3 {
-    margin: 2px;
-}
-
-.reset {
-    margin: 20px 0px 10px 0px;
-    padding: 10px;
-    border-width: 3px;
-    border-style: solid;
-    border-color: black;
-}
-
 container {
     display: grid;
     grid-template-rows: auto auto auto;
@@ -34,7 +7,7 @@ container {
     height: 720px;
     justify-items: center;
     align-items: center;
-    background-color: lightgray;
+    background-color: blue;
 }
 
 .flip-card {
@@ -69,11 +42,14 @@ container {
 
   .flip-card-front {
     background-color: #bbb;
+    color: black;
     transform: rotateY(180deg);
   }
 
   .flip-card-back {
-    background-color: lightgray;
+    background-color: #2980b9;
+    color: white;
+    
   }
 
   img {
