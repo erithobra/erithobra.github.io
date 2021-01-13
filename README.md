@@ -34,3 +34,8 @@ the ability to click on grid locations to reveal the text string at each locatio
  * include CSS animations to show cards being flipped
    * required a re-write of code to include more div levely/layers, same logic was used to control game function.
    * [This is the template that was followed for flipping cards in CSS.](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_flip_card)
+
+   #### 4. Objective Level 4 (not completed at this time):
+    * Create a two player version of this game, keeping score for each player.
+    * Use API to grab random images from website.
+    * Make game scale-able by allowing user to choose grid size.
