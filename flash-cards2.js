@@ -1,40 +1,17 @@
-// async function runGame() {
 console.log("script file 2 linked");
 
-// Create image array that will be used for cards
-
 // Board settings
-// manual input of settings at this time
+// manual input of settings
 let columnInput = 4;
 let rowInput = 3;
 
-    ////// RANDOM IMAGE ARRAY USING API'S... HOLD FOR LATER //////
-            // let cardCount = (columnInput * rowInput)/2;
-            // async function getRandomCards() {
-            //     let imageArray = [];
-            //     for (let i = 0; i < cardCount; i ++) {
-            //     let randomCard = await axios ({
-            //         url: "https://api.unsplash.com/photos/random?client_id=FiM-3N-x_Cn3j0aKrFVPHDyUi8zSsYWw-IJRj5rftiM",
-            //         method: "get"
-            //     })
-            //     imageArray.push(randomCard.data.urls.small);
-            //     }
-            // return imageArray;
-            // }
-            // const imageArray = await getRandomCards();
-            // console.log(imageArray);
-            //let dataArray = imageArray.concat(imageArray);
-
-    // creating initial image array for cards
-    let dataArray = ["images/ace_of_clubs.svg", "images/ace_of_spades.svg", "images/ace_of_diamonds.svg", "images/ace_of_hearts.svg", "images/king_of_clubs.svg", "images/king_of_spades.svg"];
-    // doubling array length and creating duplicate values so every image has a matching image
-    dataArray = dataArray.concat(dataArray);
-    // randomizing the image order -- https://flaviocopes.com/how-to-shuffle-array-javascript/
-    dataArray = dataArray.sort(() => Math.random() - 0.5);
-
-
-
-
+// creating initial image array for cards
+let dataArray = ["images/ace_of_clubs.svg", "images/ace_of_spades.svg", "images/ace_of_diamonds.svg", "images/ace_of_hearts.svg", "images/king_of_clubs.svg", "images/king_of_spades.svg"];
+// doubling array length and creating duplicate values so every image has a matching image
+dataArray = dataArray.concat(dataArray);
+// randomizing the image order -- https://flaviocopes.com/how-to-shuffle-array-javascript/
+dataArray = dataArray.sort(() => Math.random() - 0.5);
+ 
 // convert rows and columns to strings so that that they can be added to CSS properties
 let columnString = "";
 let rowString = "";
@@ -48,8 +25,8 @@ columnString = columnString.slice(0, columnString.length-1);
 rowString = rowString.slice(0, columnString.length-1);
 
 const grid = document.querySelector("container");
-grid.style.gridTemplateColumns = columnString;
-grid.style.gridTemplateRows = rowString;
+grid.style.gridTemplateColumns = columnString; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-template-columns
+grid.style.gridTemplateRows = rowString; // https://www.w3schools.com/cssref/tryit.asp?filename=trycss_js_grid-gap
 
 // create board and cards
 let numberOfCards = columnInput * rowInput;
@@ -215,5 +192,23 @@ const noMatchMessage = function () {
     turnCount++;
     document.querySelector("#turnCounter").innerHTML = `Turns taken: ${turnCount}`
 }
-// }
-// runGame();
+
+
+    ////// RANDOM IMAGE ARRAY USING API'S... HOLD FOR LATER //////
+
+            // async function runGame() {} //runGame();
+            // let cardCount = (columnInput * rowInput)/2;
+            // async function getRandomCards() {
+            //     let imageArray = [];
+            //     for (let i = 0; i < cardCount; i ++) {
+            //     let randomCard = await axios ({
+            //         url: "https://api.unsplash.com/photos/random?client_id=FiM-3N-x_Cn3j0aKrFVPHDyUi8zSsYWw-IJRj5rftiM",
+            //         method: "get"
+            //     })
+            //     imageArray.push(randomCard.data.urls.small);
+            //     }
+            // return imageArray;
+            // }
+            // const imageArray = await getRandomCards();
+            // console.log(imageArray);
+            //let dataArray = imageArray.concat(imageArray);

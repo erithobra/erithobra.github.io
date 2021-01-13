@@ -54,11 +54,6 @@ container {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
 
-  /* .flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-} */
-
-
   .flip-card-front, .flip-card-back {
     position: absolute;
     width: 150px;
@@ -84,3 +79,10 @@ container {
   .invisible {
       visibility: hidden;
   }
+
+   /* 
+ code for card to flip on hover, from original code found at -- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_flip_card
+     .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+    } 
+*/
