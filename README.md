@@ -3,7 +3,7 @@
 
 ### Memory Game
 
-![Memory Game](https://imgur.com/HY4OeES)
+![Memory Game](https://i.imgur.com/HY4OeES.png)
 
 #### 1. Objective Level 1:
  * Creat a 4x3 grid with pre-defined text strings in each grid location
