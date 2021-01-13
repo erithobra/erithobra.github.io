@@ -26,7 +26,7 @@ the ability to click on grid locations to reveal the text string at each locatio
    * replaced text strings on card face with images from an array.
  * randomize image placement.
    * created randomized card layout so that the game is different every time
-   * https://flaviocopes.com/how-to-shuffle-array-javascript/
+   * [method for shufflling an array found here](https://flaviocopes.com/how-to-shuffle-array-javascript/)
  * include CSS animations to show cards being flipped
    * required a re-write of code to include more div levely/layers, same logic was used to control game function.
-   * used https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_flip_card as template.
+   * [This is the template that was followed for flipping cards in CSS.](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_flip_card)
