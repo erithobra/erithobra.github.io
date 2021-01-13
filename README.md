@@ -1,6 +1,10 @@
 # Project-1---Game
 ## Game for Project 1
 
+### Memory Game
+
+![Memory Game](images/game-screenshot.jpg)
+
 #### 1. Objective Level 1:
  * Creat a 4x3 grid with pre-defined text strings in each grid location
 the ability to click on grid locations to reveal the text string at each location.
